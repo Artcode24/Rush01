@@ -18,6 +18,7 @@ int	ft_calcul_left(int **grid, int size, int exp_left, int current_row)
 			temp = grid[current_row][i];
 		}
 		i++;
+		
 	}
 	
 	if (view_count == exp_left)
