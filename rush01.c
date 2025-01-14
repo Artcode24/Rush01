@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "rush01.h"
 
 int	ft_calcul_left(int **grid, int size, int exp_left, int current_row)
 {
@@ -303,6 +304,19 @@ int	**ft_get_views(int argc, char *argv[])
 		i++;
 	}
 	return (views);
+}
+
+int	*ft_str_to_int(char *str)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	while(str[i])
+	{
+		
+		i++;
+	}
 }
 
 int	main(int argc, char *argv[])
