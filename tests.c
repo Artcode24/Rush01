@@ -294,12 +294,46 @@ void	test_create_poss(void)
 	}
 }
 
-void	test_create_views(int argc, char *argv[])
+void	test_count_words(void)
 {
-	int	**views = ft_get_views(argc, argv);
+	char	*str_1 = "  1 2 3    4";
+	char	*str_2 = "1 2 3  24 5    ";
+
+	if (ft_count_words(str_1) == 4)
+		printf("ft_count_words :) OK - Expected (4) Returned (4)\n");
+	else
+		printf("ft_count_words :( KO - Expected (4) Returned (%d)\n", ft_count_words(str_1));
+	if (ft_count_words(str_2) == 5)
+		printf("ft_count_words :) OK - Expected (5) Returned (5)\n");
+	else
+		printf("ft_count_words :( KO - Expected (5) Returned (%d)\n", ft_count_words(str_2));
+}
+
+void	test_split(void)
+{
+	char	*str_1 = "  1 2 3    4";
+	char	*str_2 = "1 2 3  24 5    ";
+	char	**strs;
+
+	strs = ft_split(str_1);
+
+	printf("strs :) KK\n");
+	for (int i = 0; i < 4; i++)
+		printf("%s \n", strs[i]);
+
+	printf("\n");
+	strs = ft_split(str_2);
+
+	for (int i = 0; i < 5; i++)
+		printf("%s \n", strs[i]);
+}
+
+void	test_create_views(int nb_of_views, char *argv[])
+{
+	int	**views = ft_get_views(argv[1]);
 
 	printf("possibilities :) KK\n");
- 	for (int i = 0; i < (argc - 1) / 4; i++)
+ 	for (int i = 0; i < ft_count_words(argv[1]) / 4; i++)
 	{
 		if (i == 0)
 			printf("UP:    ");
@@ -310,7 +344,7 @@ void	test_create_views(int argc, char *argv[])
 		else if (i == 3)
 			printf("RIGHT: ");
 
-		for (int j = 0; j < (argc - 1) / 4; j++)
+		for (int j = 0; j < ft_count_words(argv[1]) / 4; j++)
 		{
 			printf("%d ", views[i][j]);
 		}
@@ -318,27 +352,30 @@ void	test_create_views(int argc, char *argv[])
 	}
 }
 
-int	main(int argc, char *argv[])
+int	main(int nb_of_views, char *argv[])
 {
-	printf("\n");
-	test_factorial();
-	printf("\n");
-	test_calcul_left();
-	printf("\n");
-	test_calcul_right();
-	printf("\n");
-	test_calcul_up();
-	printf("\n");
-	test_calcul_down();
-	printf("\n");
-	test_check_repeat();
-	printf("\n");
-	test_swap();
-	printf("\n");
-	test_atoi();
-	printf("\n");
-	test_create_poss();
-	printf("\n");
-	test_create_views(argc, argv);
-	printf("\n");
+	// printf("\n");
+	// test_factorial();
+	// printf("\n");
+	// test_calcul_left();
+	// printf("\n");
+	// test_calcul_right();
+	// printf("\n");
+	// test_calcul_up();
+	// printf("\n");
+	// test_calcul_down();
+	// printf("\n");
+	// test_check_repeat();
+	// printf("\n");
+	// test_swap();
+	// printf("\n");
+	// test_atoi();
+	// printf("\n");
+	// test_create_poss();
+	// printf("\n");
+	// test_create_views(nb_of_views, argv);
+	// printf("\n");
+	// test_count_words();
+	// printf("\n");
+	// test_split();
 }
