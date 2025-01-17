@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "rush01.h"
 
 int	ft_calcul_left(int **grid, int size, int exp_left, int current_row)
 {
@@ -247,19 +246,19 @@ int	**ft_malloc_grid(int grid_size)
 	return (grid);
 }
 
-int	**ft_malloc_views(int argc)
+int	**ft_malloc_views(int nb_of_views)
 {
 	int	**views;
 	int	i;
 	int	j;
 
-	views = malloc(argc * sizeof(int *));
+	views = malloc(nb_of_views * sizeof(int *));
 	if (!views)
 		return (NULL);
 
 	i = 0;
 	j = 0;
-	while (i < argc)
+	while (i < nb_of_views)
 	{
 		views[i] = malloc(sizeof(int));
 		if (!views[i])
@@ -276,28 +275,116 @@ int	**ft_malloc_views(int argc)
 	return (views);
 }
 
-int	ft_atoi(int nb)
+int	ft_atoi(char *str)
 {
-	return (nb -= 48);
+	int	i;
+	int	sign;
+	int	nb;
+
+	i = 0;
+	sign = 1;
+	nb = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb = nb * 10;
+		nb += str[i] - 48;
+		i++;
+	}
+	return (nb * sign);
 }
 
-int	**ft_get_views(int argc, char *argv[])
+int	ft_count_words(char *argv_1)
+{
+	int	i;
+	int	count;
+	int	in_word;
+
+	i = 0;
+	count = 0;
+	in_word = 0;
+	while (argv_1[i])
+	{
+		if (argv_1[i] != ' ' && in_word == 0)
+		{
+			count++;
+			in_word = 1;
+		}
+		else if (argv_1[i] == ' ')
+		{
+			in_word = 0;
+		}
+		i++;
+	}
+	return (count);
+}
+
+char	*ft_strdup(char *str, int start, int end)
+{
+	char	*dest;
+	int		i;
+
+	dest = malloc((end - start) + 2);
+	i = 0;
+	while (start <= end)
+	{
+		dest[i] = str[start];
+		i++;
+		start++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+char	**ft_split(char *argv_1)
+{
+	int	i;
+	int	j;
+	int	start;
+	char	**strs;
+
+
+	i = 0;
+	j = 0;
+	start = 0;
+	strs = malloc(ft_count_words(argv_1) * sizeof(char *));
+	while (argv_1[i])
+	{
+		if (argv_1[i] == ' ' && i > start)
+		{
+			if (i > start)
+				strs[j++] = ft_strdup(argv_1, start, i - 1);
+			start = i + 1;
+		}
+		else if (argv_1[i] == ' ')
+			start = i + 1;
+		i++;
+	}
+	if (i > start && argv_1[i - 1] != ' ')
+		strs[j++] = ft_strdup(argv_1, start, i - 1);
+	return (strs);
+}
+
+int	**ft_get_views(char *argv_1)
 {
 	int	**views;
+	char	**arr;
+	int	count;
 	int	i;
 	int	j;
 	int	n;
 
-	views = ft_malloc_views(((argc - 1) / 4) * sizeof(int *));
+	count = ft_count_words(argv_1);
+	views = ft_malloc_views((count / 4) * sizeof(int *));
+	arr = ft_split(argv_1);
 	
 	i = 0;
-	n = 1;
-	while (i < (argc - 1) / 4)
+	n = 0;
+	while (i < (count / 4))
 	{
 		j = 0;
-		while (j < (argc - 1) / 4)
+		while (j < (count / 4))
 		{
-			views[i][j] = ft_atoi(argv[n][0]);
+			views[i][j] = ft_atoi(arr[n]);
 			n++;
 			j++;
 		}
@@ -306,32 +393,22 @@ int	**ft_get_views(int argc, char *argv[])
 	return (views);
 }
 
-int	*ft_str_to_int(char *str)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	while(str[i])
-	{
-		
-		i++;
-	}
-}
-
 int	main(int argc, char *argv[])
 {
 	int	charset[] = {1, 2, 3, 4};
+	int	nb_of_views;
 	int	size;
 	int	**poss;
 	int	**grid;
 	int	**views;
 
-	size = (argc - 1) / 4;
+	nb_of_views = ft_count_words(argv[1]);
+
+	size = nb_of_views / 4;
 	
 	grid = ft_malloc_grid(size);
 	poss = ft_malloc_poss(size);
-	views = ft_get_views(argc, argv);
+	views = ft_get_views(argv[1]);
 	
 	int	i = 0;
 	ft_fill_poss(charset, poss, &i, 0, size - 1);

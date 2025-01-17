@@ -14,6 +14,8 @@ int	**ft_malloc_poss(int size);
 int	**ft_malloc_grid(int grid_size);
 int	**ft_malloc_views(int argc);
 int	ft_atoi(int nb);
-int	**ft_get_views(int argc, char *argv[]);
+int	**ft_get_views(char *argv_1);
+int	ft_count_words(char *argv_1);
+char	**ft_split(char *argv_1);
 
 #endif // RUSH01_H
