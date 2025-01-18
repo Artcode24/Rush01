@@ -246,21 +246,21 @@ int	**ft_malloc_grid(int grid_size)
 	return (grid);
 }
 
-int	**ft_malloc_views(int nb_of_views)
+int	**ft_malloc_views(int size)
 {
 	int	**views;
 	int	i;
 	int	j;
 
-	views = malloc(nb_of_views * sizeof(int *));
+	views = malloc(size * sizeof(int *));
 	if (!views)
 		return (NULL);
 
 	i = 0;
 	j = 0;
-	while (i < nb_of_views)
+	while (i < size)
 	{
-		views[i] = malloc(sizeof(int));
+		views[i] = malloc(size * sizeof(int));
 		if (!views[i])
 		{
 			while (j < i)

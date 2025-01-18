@@ -328,7 +328,7 @@ void	test_split(void)
 		printf("%s \n", strs[i]);
 }
 
-void	test_create_views(int nb_of_views, char *argv[])
+void	test_create_views(char *argv[])
 {
 	int	**views = ft_get_views(argv[1]);
 
@@ -352,7 +352,7 @@ void	test_create_views(int nb_of_views, char *argv[])
 	}
 }
 
-int	main(int nb_of_views, char *argv[])
+int	main(int argc, char *argv[])
 {
 	// printf("\n");
 	// test_factorial();
@@ -373,7 +373,7 @@ int	main(int nb_of_views, char *argv[])
 	// printf("\n");
 	// test_create_poss();
 	// printf("\n");
-	// test_create_views(nb_of_views, argv);
+	test_create_views(argv);
 	// printf("\n");
 	// test_count_words();
 	// printf("\n");
