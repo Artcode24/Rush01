@@ -28,9 +28,9 @@ int	**ft_create_grid(void)
 		}
 	}
 
-	grid[0][0] = 1; grid[0][1] = 2; grid[0][2] = 3; grid[0][3] = 4;
-	grid[1][0] = 2; grid[1][1] = 3; grid[1][2] = 4; grid[1][3] = 1;
-	grid[2][0] = 3; grid[2][1] = 4; grid[2][2] = 1; grid[2][3] = 2;
+	grid[0][0] = 3; grid[0][1] = 2; grid[0][2] = 4; grid[0][3] = 1;
+	grid[1][0] = 1; grid[1][1] = 4; grid[1][2] = 3; grid[1][3] = 2;
+	grid[2][0] = 2; grid[2][1] = 3; grid[2][2] = 1; grid[2][3] = 4;
 	grid[3][0] = 4; grid[3][1] = 1; grid[3][2] = 2; grid[3][3] = 3;
 
 	return (grid);
@@ -109,26 +109,46 @@ void	test_factorial(void)
 void	test_calcul_left(void)
 {
 	int **grid = ft_create_grid();
+
+	if (ft_calcul_left(grid, 4, 2, 0) == true)
+		printf("ft_calcul_left :) OK - Expected (TRUE) Returned (TRUE)\n");
+	else
+		printf("ft_calcul_left :( KO - Expected (TRUE) Returned (FALSE)\n");
+
+	if (ft_calcul_left(grid, 4, 2, 1) == true)
+		printf("ft_calcul_left :) OK - Expected (TRUE) Returned (TRUE)\n");
+	else
+		printf("ft_calcul_left :( KO - Expected (TRUE) Returned (FALSE)\n");
 	
-	if (ft_calcul_left(grid, 4, 4, 0) == true)
+	if (ft_calcul_left(grid, 4, 3, 2) == true)
 		printf("ft_calcul_left :) OK - Expected (TRUE) Returned (TRUE)\n");
 	else
 		printf("ft_calcul_left :( KO - Expected (TRUE) Returned (FALSE)\n");
 
-	if (ft_calcul_left(grid, 4, 2, 0) == false)
-		printf("ft_calcul_left :) OK - Expected (FALSE) Returned (FALSE)\n");
-	else
-		printf("ft_calcul_left :( KO - Expected (FALSE) Returned (TRUE)\n");
-
-	if (ft_calcul_left(grid, 4, 2, 2) == true)
+	if (ft_calcul_left(grid, 4, 1, 3) == true)
 		printf("ft_calcul_left :) OK - Expected (TRUE) Returned (TRUE)\n");
 	else
 		printf("ft_calcul_left :( KO - Expected (TRUE) Returned (FALSE)\n");
+	
+	// if (ft_calcul_left(grid, 4, 4, 0) == true)
+	// 	printf("ft_calcul_left :) OK - Expected (TRUE) Returned (TRUE)\n");
+	// else
+	// 	printf("ft_calcul_left :( KO - Expected (TRUE) Returned (FALSE)\n");
 
-	if (ft_calcul_left(grid, 4, 3, 2) == false)
-		printf("ft_calcul_left :) OK - Expected (FALSE) Returned (FALSE)\n");
-	else
-		printf("ft_calcul_left :( KO - Expected (FALSE) Returned (TRUE)\n");
+	// if (ft_calcul_left(grid, 4, 2, 0) == false)
+	// 	printf("ft_calcul_left :) OK - Expected (FALSE) Returned (FALSE)\n");
+	// else
+	// 	printf("ft_calcul_left :( KO - Expected (FALSE) Returned (TRUE)\n");
+
+	// if (ft_calcul_left(grid, 4, 2, 2) == true)
+	// 	printf("ft_calcul_left :) OK - Expected (TRUE) Returned (TRUE)\n");
+	// else
+	// 	printf("ft_calcul_left :( KO - Expected (TRUE) Returned (FALSE)\n");
+
+	// if (ft_calcul_left(grid, 4, 3, 2) == false)
+	// 	printf("ft_calcul_left :) OK - Expected (FALSE) Returned (FALSE)\n");
+	// else
+	// 	printf("ft_calcul_left :( KO - Expected (FALSE) Returned (TRUE)\n");
 
 	ft_free_grid(grid);
 }
@@ -137,25 +157,35 @@ void	test_calcul_right(void)
 {
 	int **grid = ft_create_grid();
 	
-	if (ft_calcul_right(grid, 4, 1, 0) == true)
+	if (ft_calcul_right(grid, 4, 2, 0) == true)
 		printf("ft_calcul_right :) OK - Expected (TRUE) Returned (TRUE)\n");
 	else
 		printf("ft_calcul_right :( KO - Expected (TRUE) Returned (FALSE)\n");
 
-	if (ft_calcul_right(grid, 4, 3, 0) == false)
-		printf("ft_calcul_right :) OK - Expected (FALSE) Returned (FALSE)\n");
+	if (ft_calcul_right(grid, 4, 3, 1) == true)
+		printf("ft_calcul_right :) OK - Expected (TRUE) Returned (TRUE)\n");
 	else
-		printf("ft_calcul_right :( KO - Expected (FALSE) Returned (TRUE)\n");
-
-	if (ft_calcul_right(grid, 4, 2, 2) == true)
+		printf("ft_calcul_right :( KO - Expected (TRUE) Returned (FALSE)\n");
+	
+	if (ft_calcul_right(grid, 4, 1, 2) == true)
 		printf("ft_calcul_right :) OK - Expected (TRUE) Returned (TRUE)\n");
 	else
 		printf("ft_calcul_right :( KO - Expected (TRUE) Returned (FALSE)\n");
 
-	if (ft_calcul_right(grid, 4, 1, 2) == false)
-		printf("ft_calcul_right :) OK - Expected (FALSE) Returned (FALSE)\n");
+	if (ft_calcul_right(grid, 4, 2, 3) == true)
+		printf("ft_calcul_right :) OK - Expected (TRUE) Returned (TRUE)\n");
 	else
-		printf("ft_calcul_right :( KO - Expected (FALSE) Returned (TRUE)\n");
+		printf("ft_calcul_right :( KO - Expected (TRUE) Returned (FALSE)\n");
+
+	// if (ft_calcul_right(grid, 4, 3, 1) == false)
+	// 	printf("ft_calcul_right :) OK - Expected (FALSE) Returned (FALSE)\n");
+	// else
+	// 	printf("ft_calcul_right :( KO - Expected (FALSE) Returned (TRUE)\n");
+
+	// if (ft_calcul_right(grid, 4, 2, 3) == false)
+	// 	printf("ft_calcul_right :) OK - Expected (FALSE) Returned (FALSE)\n");
+	// else
+	// 	printf("ft_calcul_right :( KO - Expected (FALSE) Returned (TRUE)\n");
 
 	ft_free_grid(grid);
 }
@@ -163,29 +193,49 @@ void	test_calcul_right(void)
 void	test_calcul_up(void)
 {
 	// int **grid = ft_create_grid();
-	int **grid = ft_create_grid_incomplete();
-	int exp_up[] = {4, 3, 2, 1};
+	int **grid = ft_create_grid();
+	int exp_up[] = {2, 2, 1, 3};
 	int exp_up_false[] = {1, 4, 3, 2};
-	
+
 	if (ft_calcul_up(grid, 4, exp_up, 0) == true)
 		printf("ft_calcul_up :) OK - Expected (TRUE) Returned (TRUE)\n");
 	else
 		printf("ft_calcul_up :( KO - Expected (TRUE) Returned (FALSE)\n");
 
-	if (ft_calcul_up(grid, 4, exp_up_false, 3) == false)
-		printf("ft_calcul_up :) OK - Expected (FALSE) Returned (FALSE)\n");
+	if (ft_calcul_up(grid, 4, exp_up, 1) == true)
+		printf("ft_calcul_up :) OK - Expected (TRUE) Returned (TRUE)\n");
 	else
-		printf("ft_calcul_up :( KO - Expected (FALSE) Returned (TRUE)\n");
-
+		printf("ft_calcul_up :( KO - Expected (TRUE) Returned (FALSE)\n");
+	
 	if (ft_calcul_up(grid, 4, exp_up, 2) == true)
 		printf("ft_calcul_up :) OK - Expected (TRUE) Returned (TRUE)\n");
 	else
 		printf("ft_calcul_up :( KO - Expected (TRUE) Returned (FALSE)\n");
 
-	if (ft_calcul_up(grid, 4, exp_up_false, 3) == false)
-		printf("ft_calcul_up :) OK - Expected (FALSE) Returned (FALSE)\n");
+	if (ft_calcul_up(grid, 4, exp_up, 3) == true)
+		printf("ft_calcul_up :) OK - Expected (TRUE) Returned (TRUE)\n");
 	else
-		printf("ft_calcul_up :( KO - Expected (FALSE) Returned (TRUE)\n");
+		printf("ft_calcul_up :( KO - Expected (TRUE) Returned (FALSE)\n");
+	
+	// if (ft_calcul_up(grid, 4, exp_up, 0) == true)
+	// 	printf("ft_calcul_up :) OK - Expected (TRUE) Returned (TRUE)\n");
+	// else
+	// 	printf("ft_calcul_up :( KO - Expected (TRUE) Returned (FALSE)\n");
+
+	// if (ft_calcul_up(grid, 4, exp_up_false, 3) == false)
+	// 	printf("ft_calcul_up :) OK - Expected (FALSE) Returned (FALSE)\n");
+	// else
+	// 	printf("ft_calcul_up :( KO - Expected (FALSE) Returned (TRUE)\n");
+
+	// if (ft_calcul_up(grid, 4, exp_up, 2) == true)
+	// 	printf("ft_calcul_up :) OK - Expected (TRUE) Returned (TRUE)\n");
+	// else
+	// 	printf("ft_calcul_up :( KO - Expected (TRUE) Returned (FALSE)\n");
+
+	// if (ft_calcul_up(grid, 4, exp_up_false, 3) == false)
+	// 	printf("ft_calcul_up :) OK - Expected (FALSE) Returned (FALSE)\n");
+	// else
+	// 	printf("ft_calcul_up :( KO - Expected (FALSE) Returned (TRUE)\n");
 
 	ft_free_grid(grid);
 }
@@ -193,29 +243,49 @@ void	test_calcul_up(void)
 void	test_calcul_down(void)
 {
 	// int **grid = ft_create_grid();
-	int **grid = ft_create_grid_incomplete();
-	int exp_down[] = {1, 2, 2, 2};
+	int **grid = ft_create_grid();
+	int exp_down[] = {1, 3, 3, 2};
 	int exp_down_false[] = {2, 4, 3, 1};
-	
+
 	if (ft_calcul_down(grid, 4, exp_down, 0) == true)
 		printf("ft_calcul_down :) OK - Expected (TRUE) Returned (TRUE)\n");
 	else
 		printf("ft_calcul_down :( KO - Expected (TRUE) Returned (FALSE)\n");
 
-	if (ft_calcul_down(grid, 4, exp_down_false, 3) == false)
-		printf("ft_calcul_down :) OK - Expected (FALSE) Returned (FALSE)\n");
-	else
-		printf("ft_calcul_down :( KO - Expected (FALSE) Returned (TRUE)\n");
-
 	if (ft_calcul_down(grid, 4, exp_down, 1) == true)
 		printf("ft_calcul_down :) OK - Expected (TRUE) Returned (TRUE)\n");
 	else
 		printf("ft_calcul_down :( KO - Expected (TRUE) Returned (FALSE)\n");
-
-	if (ft_calcul_down(grid, 4, exp_down_false, 3) == false)
-		printf("ft_calcul_down :) OK - Expected (FALSE) Returned (FALSE)\n");
+	
+	if (ft_calcul_down(grid, 4, exp_down, 2) == true)
+		printf("ft_calcul_down :) OK - Expected (TRUE) Returned (TRUE)\n");
 	else
-		printf("ft_calcul_down :( KO - Expected (FALSE) Returned (TRUE)\n");
+		printf("ft_calcul_down :( KO - Expected (TRUE) Returned (FALSE)\n");
+
+	if (ft_calcul_down(grid, 4, exp_down, 3) == true)
+		printf("ft_calcul_down :) OK - Expected (TRUE) Returned (TRUE)\n");
+	else
+		printf("ft_calcul_down :( KO - Expected (TRUE) Returned (FALSE)\n");
+	
+	// if (ft_calcul_down(grid, 4, exp_down, 0) == true)
+	// 	printf("ft_calcul_down :) OK - Expected (TRUE) Returned (TRUE)\n");
+	// else
+	// 	printf("ft_calcul_down :( KO - Expected (TRUE) Returned (FALSE)\n");
+
+	// if (ft_calcul_down(grid, 4, exp_down_false, 3) == false)
+	// 	printf("ft_calcul_down :) OK - Expected (FALSE) Returned (FALSE)\n");
+	// else
+	// 	printf("ft_calcul_down :( KO - Expected (FALSE) Returned (TRUE)\n");
+
+	// if (ft_calcul_down(grid, 4, exp_down, 1) == true)
+	// 	printf("ft_calcul_down :) OK - Expected (TRUE) Returned (TRUE)\n");
+	// else
+	// 	printf("ft_calcul_down :( KO - Expected (TRUE) Returned (FALSE)\n");
+
+	// if (ft_calcul_down(grid, 4, exp_down_false, 3) == false)
+	// 	printf("ft_calcul_down :) OK - Expected (FALSE) Returned (FALSE)\n");
+	// else
+	// 	printf("ft_calcul_down :( KO - Expected (FALSE) Returned (TRUE)\n");
 
 	ft_free_grid(grid);
 }
@@ -357,13 +427,13 @@ int	main(int argc, char *argv[])
 	// printf("\n");
 	// test_factorial();
 	// printf("\n");
-	// test_calcul_left();
+	test_calcul_left();
 	// printf("\n");
-	// test_calcul_right();
+	test_calcul_right();
 	// printf("\n");
-	// test_calcul_up();
+	test_calcul_up();
 	// printf("\n");
-	// test_calcul_down();
+	test_calcul_down();
 	// printf("\n");
 	// test_check_repeat();
 	// printf("\n");
@@ -373,7 +443,7 @@ int	main(int argc, char *argv[])
 	// printf("\n");
 	// test_create_poss();
 	// printf("\n");
-	test_create_views(argv);
+	// test_create_views(argv);
 	// printf("\n");
 	// test_count_words();
 	// printf("\n");

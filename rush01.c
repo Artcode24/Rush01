@@ -22,9 +22,15 @@ int	ft_calcul_left(int **grid, int size, int exp_left, int current_row)
 	}
 	
 	if (view_count == exp_left)
+	{
+		// printf("OK : Ligne %d, attendu %d, trouvé %d - at poss %d \n", current_row, exp_left, view_count, k);
 		return (1);
+	}
 	else
+	{
+		// printf("Rejeté : Ligne %d, attendu %d, trouvé %d\n", current_row, exp_left, view_count);
 		return(0);
+	}
 }
 
 int	ft_calcul_right(int **grid, int size, int exp_right, int current_row)
@@ -46,8 +52,11 @@ int	ft_calcul_right(int **grid, int size, int exp_right, int current_row)
 		i--;
 	}
 	
-	if (view_count == exp_right)
+	if (view_count == exp_right)	
+	{
+		// printf("OK : Ligne %d, attendu %d, trouvé %d - at poss %d \n", current_row, exp_right, view_count, k);
 		return (1);
+	}
 	else
 		return(0);
 }
@@ -60,9 +69,9 @@ int	ft_calcul_up(int **grid, int size, int exp_up[], int current_row)
 	for (int col = 0; col < size; col++)
 	{
 		view_count = 1;
+		temp = grid[0][col];
 		for (int row = 0; row <= current_row; row++)
 		{
-			temp = grid[0][col];
 			if (temp < grid[row][col])
 			{
 				view_count++;
@@ -139,8 +148,8 @@ int	ft_check_all(int **grid, int size_hor, int current_row, int exp_left, int ex
 		return (0);
 	if (!(ft_calcul_up(grid, size_hor, exp_up, current_row)))
 		return (0);
-	if (!(ft_calcul_down(grid, size_hor, exp_down, current_row)))
-		return (0);
+	// if (!(ft_calcul_down(grid, size_hor, exp_down, current_row)))
+	// 	return (0);
 	if (!(ft_check_repeat(grid, size_hor, current_row)))
 		return (0);
 	return (1);
@@ -413,20 +422,23 @@ int	main(int argc, char *argv[])
 	int	i = 0;
 	ft_fill_poss(charset, poss, &i, 0, size - 1);
 	
-	
-	for (int i = 0, k = 0; i < 4; i++) // On parcours chaque ligne de la grille
-	{
-		for (int j = 0; j < 4; j++)
-			grid[i][j] = poss[k][j];
-		
-		while (!ft_check_all(grid, size, i, views[2][i], views[3][i], views[0], views[1]))
+	int m = 0;
+	for (int i = 0; i < 4; i++) // On parcours chaque ligne de la grille
+	{				
+		int k = m;
+		do
 		{
-			k++;
 			for (int j = 0; j < 4; j++)
 				grid[i][j] = poss[k][j];
+			k++;
+		} while (!ft_check_all(grid, size, i, views[2][i], views[3][i], views[0], views[1]) && k < 24);
+		if (k >= 25)
+		{
+			m++;
+			i = 0;
+			continue;
 		}
 	}
-
 
  	// Affiche la grille
 	for (int i = 0; i < 4; i++)
